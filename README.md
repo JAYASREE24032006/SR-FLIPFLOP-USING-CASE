@@ -1,14 +1,14 @@
-# SR-FLIPFLOP-USING-CASE
+#EX.NO.6 - SR-FLIPFLOP-USING-CASE
 
 **AIM:**
 
-To implement  SR flipflop using verilog and validating their functionality using their functional tables
+To implement  SR flipflop using verilog and validating their functionality using their functional tables.
 
 **SOFTWARE REQUIRED:**
 
 Quartus prime
 
-**THEORY**
+**THEORY:**
 
 SR Flip-Flop SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure.
 
@@ -32,17 +32,38 @@ By using three variable K-Map, we can get the simplified expression for next sta
  
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=S+R′Q(t)Q(t+1)=S+R′Q(t)
 
-**Procedure**
+**PROCEDURE:**
 
 /* write all the steps invloved */
 
-**PROGRAM**
+**PROGRAM:**
+```
+module SR_flipflop(q, q_bar, s,r, clk, reset);//SR Flip Flop Behavioral Level using ‘case’ 
+  input s,r,clk, reset;
+  output reg q;
+  output q_bar;
+ 
+  always@(posedge clk) begin // for synchronous reset
+    if(!reset)       q <= 0;
+    else 
+  begin
+      case({s,r})       
+	     2'b00: q <= q;     // No change
+        2'b01: q <= 1'b0;                       // Write logic for reset
+        2'b10: q <= 1'b1;                      // Write logic for set
+        2'b11: q <= 1'bx;                     // Write logic for Invalid state
+      endcase
+    end
+  end
+  assign q_bar = ~q;
+endmodule
+```
+**RTL LOGIC FOR FLIPFLOPS:**
+![WhatsApp Image 2024-05-01 at 21 43 16_c9f5067e](https://github.com/JAYASREE24032006/SR-FLIPFLOP-USING-CASE/assets/144360800/3bce8117-a20f-40d0-ada9-6b7218dd18a8)
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
 
-**RTL LOGIC FOR FLIPFLOPS**
+**TIMING DIGRAMS FOR FLIP FLOPS:**
+![WhatsApp Image 2024-05-01 at 21 43 36_e094770b](https://github.com/JAYASREE24032006/SR-FLIPFLOP-USING-CASE/assets/144360800/1fd15f31-0566-4018-a9bb-7b04b1637772)
 
-**TIMING DIGRAMS FOR FLIP FLOPS**
 
-**RESULTS**
+**RESULTS:**
