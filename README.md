@@ -1,6 +1,6 @@
 ## EX-6 SR-FLIPFLOP-USING-CASE
 
-**DATE : 23.04.2024
+**DATE : 23.04.2024**
 
 **AIM:**
 
